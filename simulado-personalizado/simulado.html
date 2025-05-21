@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width= initial-scale=1.0" />
+    <link rel="stylesheet" href="simulado.css" />
+    <link rel="stylesheet" href="/menu/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <title>Simulado Personalizado</title>
+  </head>
+  <body>
+    <!-- Modal do Simulado -->
+    <div id="modalSimulado" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharSimulado()">&times;</span>
+        <h2>Escolha as matérias:</h2>
+        <form id="formSimulado">
+          <label
+            ><input type="checkbox" name="materias" value="Matemática" />
+            Matemática</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Física" />
+            Física</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Química" />
+            Química</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Biologia" />
+            Biologia</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="História" />
+            História</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Geografia" />
+            Geografia</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Português" />
+            Português</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Inglês" />
+            Inglês</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Espanhol" />
+            Espanhol</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Filosofia" />
+            Filosofia</label
+          ><br />
+          <label
+            ><input type="checkbox" name="materias" value="Sociologia" />
+            Sociologia</label
+          ><br />
+          <br />
+          <button type="button" onclick="iniciarSimulado()">
+            Iniciar Simulado
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="navbar-bottom">
+      <a href="../index.html">
+        <i class="fas fa-home"></i>
+        <span>Início</span>
+      </a>
+      <a href="questoes/questoes.html">
+        <i class="fas fa-file-alt"></i>
+        <span>Questões</span>
+      </a>
+      <a href="/simulados/simulados.html">
+        <i class="fas fa-book"></i>
+        <span>Simulados</span>
+      </a>
+      <a href="/desempenho/desempenho.html">
+        <i class="fas fa-chart-bar"></i>
+        <span>Desempenho</span>
+      </a>
+    </footer>
+    <script src="simulado.js"></script>
+  </body>
+</html>

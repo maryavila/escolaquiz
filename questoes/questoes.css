@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #fff;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #f7941d;
+  text-align: center;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+#questoesContainer {
+  margin-top: 30px;
+}
+
+.questao {
+  background: #f8f8f8;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 4px solid #f7941d;
+}

@@ -1,0 +1,31 @@
+.main-content {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.simulados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #fff3e0;
+  border: 2px solid #f5a623;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background-color: #ffe0b2;
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  color: #f57c00;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulados</title>
+    <link rel="stylesheet" href="/menu/style.css" />
+    <link rel="stylesheet" href="/simulados/simulados.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="left">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span class="app-title">Simulados</span>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <h2>Escolha um Simulado</h2>
+      <div class="simulados-grid">
+        <div class="card" onclick="iniciarSimulado('enem_completo')">
+          <h3>ENEM Completo</h3>
+          <p>180 questões | Todas as áreas</p>
+        </div>
+
+        <div class="card" onclick="iniciarSimulado('ciencias_natureza')">
+          <h3>Ciências da Natureza</h3>
+          <p>45 questões | Física, Química e Biologia</p>
+        </div>
+
+        <div class="card" onclick="iniciarSimulado('linguagens')">
+          <h3>Linguagens</h3>
+          <p>45 questões | Português, Inglês, Artes</p>
+        </div>
+
+        <div class="card" onclick="iniciarSimulado('matematica')">
+          <h3>Matemática</h3>
+          <p>45 questões | Raciocínio Lógico e Matemática</p>
+        </div>
+
+        <div class="card" onclick="iniciarSimulado('humanas')">
+          <h3>Ciências Humanas</h3>
+          <p>45 questões | História, Geografia, Filosofia, Sociologia</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="navbar-bottom">
+      <a href="../index.html"><i class="fas fa-home"></i><span>Início</span></a>
+      <a href="/questoes/questoes.html"
+        ><i class="fas fa-file-alt"></i><span>Questões</span></a
+      >
+      <a href="/simulados/simulados.html"
+        ><i class="fas fa-book"></i><span>Simulados</span></a
+      >
+      <a href="/desempenho/desempenho.html"
+        ><i class="fas fa-chart-bar"></i><span>Desempenho</span></a
+      >
+    </footer>
+
+    <script src="simulados.js"></script>
+  </body>
+</html>

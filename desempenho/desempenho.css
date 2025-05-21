@@ -1,0 +1,40 @@
+.main-content {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.resumo .cards {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #fff3e0;
+  padding: 20px;
+  border-radius: 12px;
+  width: 40%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.acertos {
+  color: #2e7d32;
+  border: 2px solid #81c784;
+}
+
+.erros {
+  color: #c62828;
+  border: 2px solid #ef9a9a;
+}
+
+.card i {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.grafico {
+  margin-top: 20px;
+}

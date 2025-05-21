@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desempenho</title>
+    <link rel="stylesheet" href="/menu/style.css" />
+    <link rel="stylesheet" href="/desempenho/desempenho.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="left">
+        <i class="fas fa-chart-line logo-icon"></i>
+        <span class="app-title">Desempenho</span>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="resumo">
+        <h2>Resumo Geral</h2>
+        <div class="cards">
+          <div class="card acertos">
+            <i class="fas fa-check-circle"></i>
+            <p>Acertos</p>
+            <span id="acertos">25</span>
+          </div>
+          <div class="card erros">
+            <i class="fas fa-times-circle"></i>
+            <p>Erros</p>
+            <span id="erros">15</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="grafico">
+        <h2>Desempenho por Tema</h2>
+        <canvas id="graficoDesempenho"></canvas>
+      </section>
+    </main>
+
+    <footer class="navbar-bottom">
+      <a href="../index.html"><i class="fas fa-home"></i><span>Início</span></a>
+      <a href="/questoes/questoes.html"
+        ><i class="fas fa-file-alt"></i><span>Questões</span></a
+      >
+      <a href="/simulados/simulados.html"
+        ><i class="fas fa-book"></i><span>Simulados</span></a
+      >
+      <a href="/desempenho/desempenho.html"
+        ><i class="fas fa-chart-bar"></i><span>Desempenho</span></a
+      >
+    </footer>
+
+    <script src="/desempenho/desempenho.js"></script>
+  </body>
+</html>

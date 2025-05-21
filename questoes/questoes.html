@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questões</title>
+    <link rel="stylesheet" href="/questoes/questoes.css" />
+    <link rel="stylesheet" href="/menu/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Escolha a disciplina e a matéria</h2>
+      <select id="disciplinaSelect">
+        <option value="">Selecione a disciplina</option>
+        <option value="Matemática">Matemática</option>
+        <option value="Biologia">Biologia</option>
+        <option value="Química">Química</option>
+        <option value="Linguagens">Linguagens</option>
+        <option value="Física">Física</option>
+        <option value="Inglês/Espanhol">Inglês/Espanhol</option>
+        <option value="História">História</option>
+        <option value="Filosofia">Filosofia</option>
+        <option value="Sociologia">Sociologia</option>
+      </select>
+
+      <select id="materiaSelect" disabled>
+        <option value="">Selecione a matéria</option>
+      </select>
+
+      <div id="questoesContainer"></div>
+    </div>
+
+    <footer class="navbar-bottom">
+      <a href="../index.html"><i class="fas fa-home"></i><span>Início</span></a>
+      <a href="/questoes/questoes.html"
+        ><i class="fas fa-file-alt"></i><span>Questões</span></a
+      >
+      <a href="/simulados/simulados.html"
+        ><i class="fas fa-book"></i><span>Simulados</span></a
+      >
+      <a href="/desempenho/desempenho.html"
+        ><i class="fas fa-chart-bar"></i><span>Desempenho</span></a
+      >
+    </footer>
+
+    <script src="questoes.js"></script>
+  </body>
+</html>

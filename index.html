@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/menu/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>EscolaQuiz</title>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="left">
+        <img src="img/1000190800.png" width="30px">
+        <span class="app-title">EscolaQuiz</span>
+      </div>
+
+      <div class="right">
+        <div class="search-container">
+          <button id="search-btn" aria-label="Buscar"><i class="fas fa-search"></i></button>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Pesquisar matérias..."
+            aria-label="Pesquisar matérias"
+          />
+        </div>
+
+        <button aria-label="Perfil do usuário"><i class="fas fa-user"></i></button>
+        <div class="flame" aria-label="Sequência de acertos">
+          <i class="fas fa-fire"></i>
+          <span id="streak-count">0</span>
+        </div>
+      </div>
+    </header>
+    <div class="main-content">
+      <section class="desempenho">
+        <h2>SEU DESEMPENHO</h2>
+
+        <div class="resultado">
+          <div class="icon acerto"><i class="fas fa-check-circle"></i></div>
+          <div class="info">
+            <strong>QUESTÕES ACERTADAS</strong>
+            <div class="barra">
+              <div class="progresso" style="width: 50%"></div>
+            </div>
+            <span>20 acertos (9,9%)</span>
+          </div>
+        </div>
+
+        <div class="resultado">
+          <div class="icon erro"><i class="fas fa-times-circle"></i></div>
+          <div class="info">
+            <strong>QUESTÕES ERRADAS</strong>
+            <div class="barra">
+              <div class="progresso" style="width: 50%"></div>
+            </div>
+            <span>20 erros (9,9%)</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="simulado">
+  <h3>Teste seus Conhecimentos</h3>
+  <div class="opcoes">
+  <a href="simulado-personalizado/simulado.html" class="card-simulado"><i class="fa-solid fa-graduation-cap"></i> Simulado Personalizado</a>
+</section>
+</div>
+
+
+      <section class="temas">
+        <h3>Questões por Temas</h3>
+        <div class="temas-grid">
+          <a href="matematica.html" class="tema">
+            <i class="fas fa-square-root-alt"></i>
+            <p>Matemática</p>
+          </a>
+          <a href="fisica.html" class="tema">
+            <i class="fas fa-atom"></i>
+            <p>Física</p>
+          </a>
+          <a href="quimica.html" class="tema">
+            <i class="fas fa-flask"></i>
+            <p>Química</p>
+          </a>
+          <a href="biologia.html" class="tema">
+            <i class="fas fa-dna"></i>
+            <p>Biologia</p>
+          </a>
+          <a href="linguagens.html" class="tema">
+            <i class="fas fa-book"></i>
+            <p>Linguagens</p>
+          </a>
+          <a href="geografia.html" class="tema">
+            <i class="fas fa-globe"></i>
+            <p>Geografia</p>
+          </a>
+          <a href="historia.html" class="tema">
+            <i class="fas fa-landmark"></i>
+            <p>História</p>
+          </a>
+          <a href="filosofia.html" class="tema">
+            <i class="fas fa-brain"></i>
+            <p>Filosofia</p>
+          </a>
+          <a href="sociologia.html" class="tema">
+            <i class="fas fa-balance-scale"></i>
+            <p>Sociologia</p>
+          </a>
+          <a href="idiomas.html" class="tema">
+            <i class="fas fa-language"></i>
+            <p>Inglês/Espanhol</p>
+          </a>
+          <a href="redacao.html" class="tema">
+            <i class="fas fa-pen-nib"></i>
+            <p>Redação</p>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+      <nav class="navbar-bottom">
+        <a href="../index.html">
+          <i class="fas fa-home"></i>
+          <span>Início</span>
+        </a>
+        <a href="/questoes/questoes.html">
+          <i class="fas fa-file-alt"></i>
+          <span>Questões</span>
+        </a>
+        <a href="/simulados/simulados.html">
+          <i class="fas fa-book"></i>
+          <span>Simulados</span>
+        </a>
+        <a href="/desempenho/desempenho.html">
+          <i class="fas fa-chart-bar"></i>
+          <span>Desempenho</span>
+        </a>
+      </nav>
+    </footer>
+
+    <script src="menu/script.js"></script>
+  </body>
+</html>
