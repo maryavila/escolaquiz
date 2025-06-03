@@ -29,6 +29,20 @@ O EscolaQuiz é uma plataforma de quizzes educacionais desenvolvida para ajudar 
 
 - JavaScript
 
+- Python
+
+- Flask
+
+- APIs: fetch e REST
+
+- MySQL
+
+- mysql-connector-python
+
+- Flask-CORS
+
+- JSON
+
 # ˚.🎀༘⋆ Como rodar o projeto
 1- Clone o repositório:
 git clone https://github.com/maryavila/escolaquiz.git
