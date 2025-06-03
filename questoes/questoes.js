@@ -1,22 +1,17 @@
-const materiaPorDisciplina = {
-  Matemática: ["Álgebra", "Geometria", "Estatística"],
-  "Ciências da Natureza": ["Física", "Química", "Biologia"],
-  "Ciências Humanas": ["História", "Geografia", "Filosofia", "Sociologia"],
-  Linguagens: ["Português", "Inglês", "Espanhol"],
-};
-
-const questoes = {
-  Física: [
-    "O que é velocidade média?",
-    "Qual a fórmula da segunda lei de Newton?",
-  ],
-  História: ["Quem descobriu o Brasil?", "O que foi a Revolução Francesa?"],
-  // Adicione mais questões por matéria aqui
-};
-
 const disciplinaSelect = document.getElementById("disciplinaSelect");
 const materiaSelect = document.getElementById("materiaSelect");
 const questoesContainer = document.getElementById("questoesContainer");
+
+const materiaPorDisciplina = {
+  Matemática: ["Álgebra", "Geometria", "Estatística"],
+  Biologia: ["Genética", "Ecologia", "Fisiologia"],
+  Química: ["Química Orgânica", "Fisico-Química", "Química Geral"],
+  Linguagens: ["Português", "Inglês", "Espanhol"],
+  Física: ["Cinemática", "Dinâmica", "Óptica"],
+  História: ["História do Brasil", "História Geral"],
+  Filosofia: ["Ética", "Filosofia Moderna"],
+  Sociologia: ["Sociologia Clássica", "Sociologia Contemporânea"],
+};
 
 disciplinaSelect.addEventListener("change", () => {
   const disciplina = disciplinaSelect.value;
@@ -40,15 +35,43 @@ materiaSelect.addEventListener("change", () => {
   const materia = materiaSelect.value;
   questoesContainer.innerHTML = "";
 
-  if (questoes[materia]) {
-    questoes[materia].forEach((q) => {
-      const div = document.createElement("div");
-      div.classList.add("questao");
-      div.textContent = q;
-      questoesContainer.appendChild(div);
-    });
-  } else {
-    questoesContainer.innerHTML =
-      "<p>Nenhuma questão disponível para esta matéria.</p>";
+  if (materia) {
+    fetch(
+      `http://localhost:5000/escolaquiz?materia=${encodeURIComponent(materia)}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length === 0) {
+          questoesContainer.innerHTML =
+            "<p>Nenhuma questão disponível para esta matéria.</p>";
+          return;
+        }
+
+        data.forEach((questao) => {
+          const questaoDiv = document.createElement("div");
+          questaoDiv.classList.add("questao");
+
+          const enunciado = document.createElement("p");
+          enunciado.textContent = questao.enunciado;
+
+          questaoDiv.appendChild(enunciado);
+
+          const alternativasList = document.createElement("ul");
+
+          questao.alternativas.forEach((alt) => {
+            const item = document.createElement("li");
+            item.textContent = `${alt.letra}) ${alt.texto}`;
+            alternativasList.appendChild(item);
+          });
+
+          questaoDiv.appendChild(alternativasList);
+
+          questoesContainer.appendChild(questaoDiv);
+        });
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar questões:", error);
+        questoesContainer.innerHTML = "<p>Erro ao carregar questões.</p>";
+      });
   }
 });

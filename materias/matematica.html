@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Matemática</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .quiz-container {
+        background: #ffffff;
+        padding: 40px 35px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        max-width: 540px;
+        width: 100%;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .quiz-container:hover {
+        transform: translateY(-8px);
+      }
+
+      h1 {
+        color: #f57c00;
+        font-weight: 700;
+        font-size: 2.4rem;
+        margin-bottom: 24px;
+        letter-spacing: 1.1px;
+        text-transform: uppercase;
+      }
+
+      #question {
+        margin: 25px 0 35px;
+        font-weight: 600;
+        color: #f57c00;
+        font-size: 1.2rem;
+        min-height: 60px;
+      }
+
+      .option {
+        display: block;
+        margin: 12px 0;
+        padding: 14px 20px;
+        background: #f5a623;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 4px 8px rgba(245, 166, 35, 0.4);
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .option:hover:not(:disabled) {
+        background: #f57c00;
+        box-shadow: 0 6px 15px rgba(245, 124, 0, 0.7);
+      }
+
+      .option:disabled {
+        cursor: default;
+        opacity: 0.85;
+      }
+
+      .correct {
+        background: #388e3c !important;
+        box-shadow: 0 6px 15px rgba(56, 142, 60, 0.7) !important;
+        color: white;
+      }
+
+      .incorrect {
+        background: #d32f2f !important;
+        box-shadow: 0 6px 15px rgba(211, 47, 47, 0.7) !important;
+        color: white;
+      }
+
+      #next-btn {
+        margin-top: 30px;
+        padding: 14px 30px;
+        background: #f57c00;
+        color: white;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 700;
+        box-shadow: 0 5px 12px rgba(245, 124, 0, 0.6);
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      #next-btn:hover {
+        background: #e65100;
+        box-shadow: 0 7px 18px rgba(230, 81, 0, 0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <h1>Geometria</h1>
+      <div id="question"></div>
+      <div id="options"></div>
+      <button id="next-btn">Próxima</button>
+      <div
+        id="score"
+        style="margin-top: 20px; font-weight: bold; color: #f57c00"
+      ></div>
+    </div>
+
+    <script>
+      let questions = [];
+      let currentQuestion = 0;
+      let score = 0;
+
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+      const nextBtn = document.getElementById("next-btn");
+      const scoreElement = document.getElementById("score");
+
+      async function loadQuestions() {
+        try {
+          const response = await fetch("http://localhost:5000/api/perguntas");
+          questions = await response.json();
+          if (questions.length === 0) {
+            questionElement.innerText = "Nenhuma pergunta disponível.";
+            nextBtn.style.display = "none";
+            return;
+          }
+          showQuestion();
+        } catch (error) {
+          questionElement.innerText = "Erro ao carregar perguntas.";
+          console.error(error);
+        }
+      }
+
+      function showQuestion() {
+        resetState();
+        const q = questions[currentQuestion];
+        questionElement.innerText = q.enunciado; // ✅ Ajustado aqui!
+
+        q.alternativas.forEach((alt) => {
+          const btn = document.createElement("button");
+          btn.innerText = `${alt.letra}) ${alt.texto}`;
+          btn.classList.add("option");
+          btn.addEventListener(
+            "click",
+            () => selectAnswer(btn, q.correta, alt.letra) // ✅ pega a letra correta
+          );
+          optionsElement.appendChild(btn);
+        });
+      }
+
+      function resetState() {
+        nextBtn.style.display = "none";
+        optionsElement.innerHTML = "";
+      }
+
+      function selectAnswer(selectedBtn, correctAnswer, selectedLetter) {
+        const isCorrect = selectedLetter === correctAnswer;
+        selectedBtn.classList.add(isCorrect ? "correct" : "incorrect");
+
+        if (isCorrect) {
+          score++; // ✅ incrementa a pontuação
+        }
+
+        Array.from(optionsElement.children).forEach((btn) => {
+          btn.disabled = true;
+          if (btn.innerText.startsWith(correctAnswer)) {
+            btn.classList.add("correct");
+          }
+        });
+
+        nextBtn.style.display = "block";
+      }
+
+      nextBtn.addEventListener("click", () => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          showQuestion();
+        } else {
+          questionElement.innerText = `Parabéns! Você completou o quiz!`;
+          optionsElement.innerHTML = "";
+          nextBtn.style.display = "none";
+          scoreElement.innerText = `Você acertou ${score} de ${questions.length} perguntas.`;
+        }
+      });
+
+      loadQuestions();
+    </script>
+  </body>
+</html>

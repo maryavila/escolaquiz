@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escola Quiz - Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Escola Quiz</h1>
+      <form action="/login" method="post">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Entrar</button>
+        <a href="index.html"></a>
+      </form>
+      <p class="info">Plataforma de quizzes para o ENEM - Ensino Médio</p>
+    </div>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #f5a623, #f57c00);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .login-container {
+        background-color: #fff;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+      }
+
+      .login-container h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .login-container label {
+        display: block;
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      .login-container input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .login-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #f56623;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .login-container button:hover {
+        background-color: #f57c00;
+      }
+
+      .info {
+        font-size: 12px;
+        margin-top: 15px;
+        color: #666;
+      }
+    </style>
+  </body>
+</html>

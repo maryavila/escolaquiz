@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simulado ENEM</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #f5a623 0%, #f57c00 100%);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+      }
+
+      .quiz-container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .quiz-container:hover {
+        transform: translateY(-5px);
+      }
+
+      .question {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .option {
+        padding: 12px;
+        background: #f0f0f0;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .option:hover {
+        background: #f57c00;
+        color: #fff;
+      }
+
+      .option.disabled {
+        pointer-events: none;
+        opacity: 0.6;
+      }
+
+      .next-btn {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #f5a623;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .next-btn:hover {
+        background: #f57c00;
+      }
+
+      .result {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-top: 20px;
+      }
+
+      .progress {
+        height: 8px;
+        background: #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #f57c00;
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <div class="progress">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <div id="question" class="question"></div>
+      <div id="options" class="options"></div>
+      <button class="next-btn" onclick="nextQuestion()">Próxima</button>
+      <div id="result" class="result"></div>
+    </div>
+
+    <script>
+      const quizData = [
+        {
+          pergunta:
+            "(Enem/2014) Censura moralista Há tempos que a leitura está em pauta. E, diz-se, em crise. Comenta-se esta crise, por exemplo, apontando a precariedade das práticas de leitura, lamentando a falta de familiaridade dos jovens com livros, reclamando da falta de bibliotecas em tantos municípios, do preço dos livros em livrarias, num nunca acabar de problemas e de carências. Mas, de um tempo para cá, pesquisas acadêmicas vêm dizendo que talvez não seja exatamente assim, que brasileiros leem, sim, só que leem livros que as pesquisas tradicionais não levam em conta. E, também de um tempo para cá, políticas educacionais têm tomado a peito investir em livros e em leitura. Os falantes, nos textos que produzem, sejam orais ou escritos, posicionam-se frente a assuntos que geram consenso ou despertam polêmica. No texto, a autora",
+          opcoes: [
+            "a) ressalta a importância de os professores incentivarem os jovens às práticas de leitura.",
+            "b) critica pesquisas tradicionais que atribuem a falta de leitura à precariedade de bibliotecas.",
+            "b) critica pesquisas tradicionais que atribuem a falta de leitura à precariedade de bibliotecas.",
+            "d) questiona a existência de uma crise de leitura com base nos dados de pesquisas acadêmicas",
+          ],
+          correta: 3,
+        },
+        {
+          pergunta:
+            "(Enem/2013) Para a identificação de um rapaz vítima de acidente, fragmentos de tecidos foram retirados e submetidos à extração de DNA nuclear, para comparação com o DNA disponível dos possíveis familiares (pai, avô materno, avó materna, filho e filha). Como o teste com o DNA nuclear não foi conclusivo, os peritos optaram por usar também DNA mitocondrial, para dirimir dúvidas. Para identificar o corpo, os peritos devem verificar se há homologia entre o DNA mitocondrial do rapaz e o DNA mitocondrial do(a)",
+          opcoes: ["pai", "filho", "filha", "avo materna"],
+          correta: 3,
+        },
+        {
+          pergunta: "3) Quem descobriu o Brasil?",
+          opcoes: [
+            "Pedro Álvares Cabral",
+            "Cristóvão Colombo",
+            "Dom Pedro I",
+            "Tiradentes",
+          ],
+          correta: 0,
+        },
+        {
+          pergunta: "4) Qual a capital do Brasil?",
+          opcoes: ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"],
+          correta: 2,
+        },
+        {
+          pergunta: "5) Em que ano foi proclamada a independência do Brasil?",
+          opcoes: ["1500", "1822", "1889", "1964"],
+          correta: 1,
+        },
+        {
+          pergunta: "6) Qual o maior planeta do sistema solar?",
+          opcoes: ["Terra", "Saturno", "Júpiter", "Marte"],
+          correta: 2,
+        },
+        {
+          pergunta: "7) Quem escreveu 'Dom Casmurro'?",
+          opcoes: [
+            "José de Alencar",
+            "Machado de Assis",
+            "Carlos Drummond",
+            "Clarice Lispector",
+          ],
+          correta: 1,
+        },
+      ];
+
+      let indiceAtual = 0;
+      let score = 0;
+
+      const questionEl = document.getElementById("question");
+      const optionsEl = document.getElementById("options");
+      const resultEl = document.getElementById("result");
+      const progressBar = document.getElementById("progress-bar");
+
+      function carregarQuestao() {
+        const questao = quizData[indiceAtual];
+        questionEl.innerText = questao.pergunta;
+
+        optionsEl.innerHTML = "";
+        questao.opcoes.forEach((opcao, index) => {
+          const btn = document.createElement("button");
+          btn.innerText = opcao;
+          btn.classList.add("option");
+          btn.onclick = () => verificarResposta(index, btn);
+          optionsEl.appendChild(btn);
+        });
+
+        atualizarProgresso();
+      }
+
+      function verificarResposta(indexSelecionado, botaoClicado) {
+        const questao = quizData[indiceAtual];
+
+        document.querySelectorAll(".option").forEach((btn) => {
+          btn.classList.add("disabled");
+          if (
+            quizData[indiceAtual].opcoes.indexOf(btn.innerText) ===
+            questao.correta
+          ) {
+            btn.style.borderColor = "green";
+          }
+        });
+
+        if (indexSelecionado === questao.correta) {
+          score++;
+          botaoClicado.style.background = "#4CAF50";
+          botaoClicado.style.color = "#fff";
+        } else {
+          botaoClicado.style.background = "#f44336";
+          botaoClicado.style.color = "#fff";
+        }
+      }
+
+      function nextQuestion() {
+        indiceAtual++;
+        if (indiceAtual < quizData.length) {
+          carregarQuestao();
+        } else {
+          mostrarResultado();
+        }
+      }
+
+      function mostrarResultado() {
+        questionEl.style.display = "none";
+        optionsEl.style.display = "none";
+        document.querySelector(".next-btn").style.display = "none";
+        progressBar.style.width = "100%";
+
+        resultEl.innerHTML = `Você acertou <strong>${score}</strong> de <strong>${quizData.length}</strong> questões!`;
+      }
+
+      function atualizarProgresso() {
+        const progresso = (indiceAtual / quizData.length) * 100;
+        progressBar.style.width = `${progresso}%`;
+      }
+
+      carregarQuestao();
+    </script>
+  </body>
+</html>
